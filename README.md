@@ -1,6 +1,6 @@
 A small rust crate that adds some minor conveniences on top of [rust-pgn-reader](https://github.com/niklasf/rust-pgn-reader) together with [rayon](https://github.com/rayon-rs/rayon) to process in parallel a directory of compressed or uncompressed PGN files into CSVs.
 
-To generate a new set of CSVs containing data to your specific requirements, you write a binary file whose `main()` function calls `pgn2csv::pgn2csv::<P>()`, where `P` is a type that you create that implements the traits `pgn_reader::Visitor` and `pgn2csv::GameProcessor`. `GameProcessor` has only two methods, `skip()` and `row()`, that respectively define whether a specific game's data is relevant to you and should be included as a row in the csv, and what data that row should hold. There are a couple examples of usage in `src/bin`.
+To generate a new set of CSVs containing data to your specific requirements, you write a binary file whose `main()` function calls `pgn2csv::pgn2csv::<P>()`, where `P` is a type that you create that implements the traits `Default`, `pgn_reader::Visitor`, and `pgn2csv::GameProcessor`. `GameProcessor` has two methods, `skip()` and `row()`, that respectively define whether a specific game's data is relevant to you and should be included as a row in the csv, and what data that row should hold. The latter should return a type that implements `Default` and `serde::Serialize`. There are a couple examples of usage in `src/bin`.
 
 ## Usage
 
