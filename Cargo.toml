@@ -9,8 +9,10 @@ csv = "1.1"
 serde = { version = "1", features = ["derive"] }
 pgn-reader = "0.19.0"
 bzip2 = "0.4.3"
-humantime = "2.1.0"
-regex = "1"
-lazy_static = "1.4.0"
 globwalk = "0.8.1"
 rayon = "1.5"
+anyhow = "1.0.72"
+zstd = "0.12.4"
+indicatif = { version = "0.17.6", features = ["rayon"] }
+bstr = "1.6.0"
+bstr_parse = "0.1.0"
