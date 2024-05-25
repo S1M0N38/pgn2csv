@@ -15,6 +15,17 @@ impl TryFrom<RawHeader<'_>> for Rating {
     }
 }
 
+#[derive(Default, Serialize)]
+pub struct RatingDiff(i16);
+
+impl TryFrom<RawHeader<'_>> for RatingDiff {
+    type Error = Error;
+
+    fn try_from(value: RawHeader<'_>) -> Result<Self> {
+        Ok(RatingDiff(value.as_bytes().parse::<i16>()?))
+    }
+}
+
 /// A time control header like e.g. 300+0. This is the only time control
 /// format currently supported; there is a [variety of other formats in the PGN
 /// spec](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c9.6.1).
@@ -88,3 +99,14 @@ impl TryFrom<RawHeader<'_>> for PgnResult {
         }
     }
 }
+
+//#[derive(Default, Serialize)]
+//pub struct Player(String);
+//
+//impl TryFrom<RawHeader<'_>> for Player {
+//    type Error = Error;
+//
+//    fn try_from(value: RawHeader<'_>) -> Result<Self> {
+//        Ok(Player(value.as_bytes().parse::<String>()?))
+//    }
+//}
